@@ -57,7 +57,7 @@ ERL_NIF_TERM argon2_hash_nif(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[]
 			!enif_get_uint(env, argv[9], &version))
 		return enif_make_badarg(env);
 
-	m_cost = 1U << m;
+	m_cost = m;
 	type = (argon2_type)type_int;
 
 	if (hashlen > ARGON2_MAX_OUTLEN) {
