@@ -57,7 +57,6 @@ ERL_NIF_TERM argon2_hash_nif(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[]
 			!enif_get_uint(env, argv[9], &version))
 		return enif_make_badarg(env);
 
-	m_cost = m;
 	type = (argon2_type)type_int;
 
 	if (hashlen > ARGON2_MAX_OUTLEN) {
@@ -176,12 +175,12 @@ static ERL_NIF_TERM argon2_error_nif(ErlNifEnv *env, int argc, const ERL_NIF_TER
 
 static ERL_NIF_TERM argon2_encodedlen_nif(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 {
-	unsigned int t_cost, m, m_cost, parallelism, saltlen, hashlen, type_int;
+	unsigned int t_cost, m_cost, parallelism, saltlen, hashlen, type_int;
 	argon2_type type;
 	int ret;
 
-	if (argc != 6 || !enif_get_uint(env, argv[0], &t_cost) ||
-			!enif_get_uint(env, argv[1], &m) ||
+	if (argc != 10 || !enif_get_uint(env, argv[0], &t_cost) ||
+			!enif_get_uint(env, argv[1], &m_cost) ||
 			!enif_get_uint(env, argv[2], &parallelism) ||
 			!enif_get_uint(env, argv[3], &saltlen) ||
 			!enif_get_uint(env, argv[4], &hashlen) ||
