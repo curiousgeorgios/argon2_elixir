@@ -187,7 +187,6 @@ static ERL_NIF_TERM argon2_encodedlen_nif(ErlNifEnv *env, int argc, const ERL_NI
 			!enif_get_uint(env, argv[5], &type_int))
 		return enif_make_badarg(env);
 
-	m_cost = 1U << m;
 	type = (argon2_type)type_int;
 
 	ret = argon2_encodedlen(t_cost, m_cost, parallelism, saltlen, hashlen, type);
