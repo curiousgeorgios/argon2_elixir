@@ -46,7 +46,7 @@ ERL_NIF_TERM argon2_hash_nif(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[]
 	char *hash, *encoded;
 
 	if (argc != 10 || !enif_get_uint(env, argv[0], &t_cost) ||
-			!enif_get_uint(env, argv[1], &m) ||
+			!enif_get_uint(env, argv[1], &m_cost) ||
 			!enif_get_uint(env, argv[2], &parallelism) ||
 			!enif_inspect_binary(env, argv[3], &pwd) ||
 			!enif_inspect_binary(env, argv[4], &salt) ||
@@ -179,7 +179,7 @@ static ERL_NIF_TERM argon2_encodedlen_nif(ErlNifEnv *env, int argc, const ERL_NI
 	argon2_type type;
 	int ret;
 
-	if (argc != 10 || !enif_get_uint(env, argv[0], &t_cost) ||
+	if (argc != 6 || !enif_get_uint(env, argv[0], &t_cost) ||
 			!enif_get_uint(env, argv[1], &m_cost) ||
 			!enif_get_uint(env, argv[2], &parallelism) ||
 			!enif_get_uint(env, argv[3], &saltlen) ||
